@@ -4,11 +4,17 @@ metadata:
   name: litellm-config-file
 data:
   config.yaml: |
-      model_list: 
-        - model_name: my-r1-model
-          litellm_params:
-            model: huggingface/together/Qwen/Qwen2.5-7B-Instruct
-            api_key: os.environ/HF_TOKEN # ensure you have `HF_TOKEN` in your .env
+    litellm_settings:
+      request_timeout: 120
+      json_logs: true
+      turn_off_message_logging: true
+    general_settings:
+      master_key: os.environ/LITELLM_MASTER_KEY
+    model_list: 
+      - model_name: my-r1-model
+        litellm_params:
+          model: huggingface/together/Qwen/Qwen2.5-7B-Instruct
+          api_key: os.environ/HF_TOKEN # ensure you have `HF_TOKEN` in your .env
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -44,3 +50,17 @@ spec:
         - name: config-volume
           configMap:
             name: litellm-config-file
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litellm-service
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: litellm          # Must perfectly match deployment's matchLabels
+  ports:
+    - protocol: TCP
+      port: 4000          # The port exposed inside the cluster for your Ingress
+      targetPort: 4000    # The containerPort specified in your deployment
