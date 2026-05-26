@@ -20,7 +20,7 @@ sudo ufw status verbose
 
 ## Step 2. Install LiteLLM Gateway
 
-Create the Kubernetes secret,
+Create the Kubernetes secret (from HuggingFace),
 
 ```
 kubectl create secret generic litellm-secrets --from-literal=HF_TOKEN="xxx"
