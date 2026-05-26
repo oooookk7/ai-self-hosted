@@ -26,6 +26,12 @@ Create the Kubernetes secret,
 kubectl create secret generic litellm-secrets --from-literal=HF_TOKEN="xxx"
 ```
 
+Setup the LiteLLM deployment,
+
+```
+kubectl create -f litellm.yaml
+```
+
 ## Step 3. Install Istio
 
 Install Helm,
