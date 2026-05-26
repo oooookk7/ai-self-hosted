@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`proxy.k8sflow.space`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+    - match: Host(`proxy.k8sflow.space`) && (PathPrefix(`/dashboard`)
       kind: Rule
       services:
         - name: api@internal
