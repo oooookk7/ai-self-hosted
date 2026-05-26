@@ -20,7 +20,11 @@ sudo ufw status verbose
 
 ## Step 2. Install LiteLLM Gateway
 
-TODO
+Create the Kubernetes secret,
+
+```
+kubectl create secret generic litellm-secrets --from-literal=HF_TOKEN="xxx"
+```
 
 ## Step 3. Install Istio
 
