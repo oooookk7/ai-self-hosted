@@ -64,3 +64,22 @@ spec:
     - protocol: TCP
       port: 4000          # The port exposed inside the cluster for your Ingress
       targetPort: 4000    # The containerPort specified in your deployment
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: litellm-ingress
+  namespace: default
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: api.k8sflow.space
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: litellm-service
+                port:
+                  number: 4000
