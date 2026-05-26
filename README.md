@@ -24,6 +24,7 @@ Create the Kubernetes secret (from HuggingFace),
 
 ```
 kubectl create secret generic litellm-secrets --from-literal=HF_TOKEN="xxx"
+kubectl create secret generic litellm-master-key --from-literal=LITELLM_MASTER_KEY="my-masterkeyzzz"
 ```
 
 Setup the LiteLLM deployment,
