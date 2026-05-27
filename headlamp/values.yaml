@@ -1,0 +1,29 @@
+replicaCount: 1
+
+config:
+  inCluster: true
+
+resources:
+  requests:
+    cpu: 25m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  ingressClassName: traefik
+  hosts:
+    - host: dashboard.k8sflow.space
+      paths:
+        - path: /
+          type: Prefix
+  tls:
+    - secretName: ingress-tls
+      hosts:
+        - dashboard.k8sflow.space
