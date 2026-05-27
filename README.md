@@ -34,6 +34,20 @@ Setup the LiteLLM deployment,
 kubectl create -f litellm.yaml
 ```
 
+## Step 3. Setup Headlamp
+
+For visualization of Kubernetes cluster, create the necessary access (read-only) configs,
+
+```
+kubectl create -f headlamp.yaml
+```
+
+Create the secret token as necessary,
+
+```
+kubectl -n kube-system create token headlamp-readonly
+```
+
 ## Step 3. Install Istio
 
 Install Helm,
