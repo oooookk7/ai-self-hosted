@@ -72,6 +72,10 @@ metadata:
   namespace: default
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+        - api.k8sflow.space
+      secretName: ingress-tls
   rules:
     - host: api.k8sflow.space
       http:
