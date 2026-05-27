@@ -8,8 +8,8 @@ spec:
     - websecure
   tls:
     secretName: ingress-tls
-  outes:
-    - match: Host(`proxy.k8sflow.space`) && (PathPrefix(`/dashboard`)
+  routes:
+    - match: Host(`proxy.k8sflow.space`)
       kind: Rule
       services:
         - name: api@internal
