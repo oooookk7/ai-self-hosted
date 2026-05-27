@@ -1,7 +1,13 @@
 replicaCount: 1
 
+serviceAccount:
+  create: false
+  name: headlamp-readonly
+
 config:
   inCluster: true
+  extraArgs:
+    - "-kubeconfig=/home/headlamp/.kube/config"
 
 resources:
   requests:
@@ -27,3 +33,13 @@ ingress:
     - secretName: ingress-tls
       hosts:
         - dashboard.k8sflow.space
+
+volumes:
+  - name: headlamp-kubeconfig
+    secret:
+      secretName: headlamp-kubeconfig
+volumeMounts:
+  - name: headlamp-kubeconfig
+    mountPath: /home/headlamp/.kube/config
+    subPath: config
+    readOnly: true
