@@ -5,8 +5,10 @@ metadata:
   namespace: kube-system
 spec:
   entryPoints:
-    - web
-  routes:
+    - websecure
+  tls:
+    secretName: ingress-tls
+  outes:
     - match: Host(`proxy.k8sflow.space`) && (PathPrefix(`/dashboard`)
       kind: Rule
       services:
