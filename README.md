@@ -20,19 +20,6 @@ sudo ufw status verbose
 # sudo ufw allow from x.x.x.x to 6443/tcp 8000/tcp 8443/tcp 9000/tcp
 ```
 
-## Step 2. Install LiteLLM Gateway
-
-Create the Kubernetes secret (from HuggingFace),
-
-```
-kubectl create secret generic litellm-secrets --from-literal=HF_TOKEN="xxx" --from-literal=LITELLM_MASTER_KEY="my-masterkeyzzz"
-```
-
-Setup the LiteLLM deployment,
-
-```
-kubectl create -f litellm.yaml
-```
 
 ## Step 3. Setup Headlamp
 

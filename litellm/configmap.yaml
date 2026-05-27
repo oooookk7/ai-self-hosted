@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: litellm-config-file
+data:
+  config.yaml: |
+    litellm_settings:
+      request_timeout: 120
+      json_logs: true
+      turn_off_message_logging: true
+    general_settings:
+      master_key: os.environ/LITELLM_MASTER_KEY
+    model_list: 
+      - model_name: my-r1-model
+        litellm_params:
+          model: huggingface/together/Qwen/Qwen2.5-7B-Instruct
+          api_key: os.environ/HF_TOKEN # ensure you have `HF_TOKEN` in your .env
