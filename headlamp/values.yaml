@@ -4,6 +4,11 @@ serviceAccount:
   create: false
   name: headlamp-readonly
 
+clusterRoleBinding:
+  create: false
+  name: headlamp-readonly
+  clusterRoleName: headlamp-readonly
+
 config:
   inCluster: true
   extraArgs:
@@ -38,6 +43,7 @@ volumes:
   - name: headlamp-kubeconfig
     secret:
       secretName: headlamp-kubeconfig
+
 volumeMounts:
   - name: headlamp-kubeconfig
     mountPath: /home/headlamp/.kube/config

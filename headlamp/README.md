@@ -2,6 +2,7 @@ Create the Kubernetes service account,
 
 ```
 kubectl create -f headlamp/serviceaccount.yaml
+kubectl create -f headlamp/clusterrole.yaml
 kubectl create -f headlamp/clusterrolebinding.yaml
 ```
 

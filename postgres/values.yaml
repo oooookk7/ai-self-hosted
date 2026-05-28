@@ -1,0 +1,32 @@
+# global:
+#   security:
+#     allowInsecureImages: true
+
+# image:
+#   registry: docker.io
+#   repository: pgvector/pgvector
+#   tag: pg16
+#   pullPolicy: IfNotPresent
+
+architecture: standalone
+
+auth:
+  username: postgres
+  database: postgres
+  existingSecret: vault-postgres-secret
+
+primary:
+  persistence:
+    enabled: true
+    size: 5Gi
+  resourcesPreset: "nano"
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  initdb:
+    scriptsConfigMap: postgres-init-scripts
+  extraEnvVarsSecret: vault-postgres-secret
